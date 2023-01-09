@@ -1,7 +1,7 @@
-using Data.Models;
+using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DepositService.Data
+namespace Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {

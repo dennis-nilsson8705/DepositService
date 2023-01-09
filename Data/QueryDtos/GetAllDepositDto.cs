@@ -1,10 +1,12 @@
-namespace Data.Entities;
+namespace Data.QueryDtos;
 
-public class Deposit
+public class GetAllDepositDto
 {
-     public Guid Id { get; set; }
+    public Guid Id { get; set; }
+
     public int Amount { get; set; }
+
     public string? Currency { get; set; }
-    
+
     public bool? IsCrypto { get; set; }
 }

@@ -1,4 +1,4 @@
-namespace Application.CommandHandlers;
+namespace Command.Query;
 
 public class GetDepositByCurrencyCommandHandler
 {

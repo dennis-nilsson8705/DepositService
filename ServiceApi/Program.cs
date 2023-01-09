@@ -1,7 +1,11 @@
+ using System.Reflection;
+ using Command.Query;
+ using Data.Entities;
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.EntityFrameworkCore;
-using ApiProject.Data;
-
+using MediatR;
+ using Infrastructure;
+ 
 var builder = WebApplication.CreateBuilder(args);
 
 //Add certificate
@@ -21,11 +25,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("Standard"))
 );
 
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(GetAllDepositCommand).GetTypeInfo().Assembly);
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+ 
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
-{
+{ 
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }

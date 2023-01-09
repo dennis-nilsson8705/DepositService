@@ -1,6 +1,6 @@
 namespace Data.QueryDtos;
 
-public class GetDepositDto
+public class GetDepositsByCurrencyDto
 {
     public string? Currency { get; set; }
 }

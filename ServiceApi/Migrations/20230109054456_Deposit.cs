@@ -2,15 +2,15 @@
 
 #nullable disable
 
-namespace ApiProject.Migrations
+namespace Service.Migrations
 {
-    public partial class MoneyUpdate : Migration
+    public partial class Deposit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
                 name: "IsCrypto",
-                table: "Money",
+                table: "Deposit",
                 type: "boolean",
                 nullable: false,
                 defaultValue: false);
@@ -20,7 +20,7 @@ namespace ApiProject.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "IsCrypto",
-                table: "Money");
+                table: "Deposit");
         }
     }
 }

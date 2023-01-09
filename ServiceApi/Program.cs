@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.EntityFrameworkCore;
-using ApiProject.Data;
-
+using DepositService.Data;
+  
 var builder = WebApplication.CreateBuilder(args);
 
 //Add certificate
@@ -21,7 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("Standard"))
 );
 
-
+  
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

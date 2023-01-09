@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ApiProject.Migrations
+namespace Service.Migrations
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Money",
+                name: "Deposit",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -19,14 +19,14 @@ namespace ApiProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Money", x => x.Id);
+                    table.PrimaryKey("PK_Deposit", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Money");
+                name: "Deposit");
         }
     }
 }

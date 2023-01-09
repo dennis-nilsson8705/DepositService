@@ -3,8 +3,7 @@ using Data.Entities;
 using Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
- 
+
 namespace DepositService.QueryControllers;
 
 [ApiController]
@@ -13,7 +12,7 @@ public class DepositController : ControllerBase
 {
     private readonly ILogger<DepositController> _logger;
     private readonly IMediator _mediator;
-    private readonly DbContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
     public DepositController(ILogger<DepositController> logger, IMediator mediator, ApplicationDbContext dbContext)
     {
@@ -25,14 +24,8 @@ public class DepositController : ControllerBase
     [HttpGet(Name = "GetAllDeposits")]
     public async Task<IEnumerable<Deposit>> Get()
     {
-        var deposits = new Deposit
-        {
-            Amount = 0,
-            Currency = "NZD"
-        };
-        
-        var movie = await _mediator.Send(new GetAllDepositCommand( ));
+        var deposits = await _mediator.Send(new GetAllDepositCommand(_dbContext));
 
-        return new List<Deposit>() { deposits };
+        return deposits;
     }
 }

@@ -16,8 +16,7 @@ public class CreateDepositCommandHandler : IRequestHandler<CreateDepositCommand,
         );
         try
         {
-            var allDeposits = await command.DbContext.AddAsync(deposit, cancellationToken: token);
-            return true;
+            await command.DbContext.AddAsync(deposit, cancellationToken: token);
         }
         catch (Exception e)
 
@@ -27,5 +26,8 @@ public class CreateDepositCommandHandler : IRequestHandler<CreateDepositCommand,
                 throw;
             }
         }
+
+        await command.DbContext.SaveChangesAsync(token);
+        return true;
     }
 }

@@ -16,10 +16,11 @@ public class DepositController : ControllerBase
     private readonly ApplicationDbContext _dbContext;
  
 
-    public DepositController(ILogger<DepositController> logger, ApplicationDbContext dbContext)
+    public DepositController(ILogger<DepositController> logger, ApplicationDbContext dbContext, IMediator mediator)
     {
         _logger = logger;
         _dbContext = dbContext;
+        _mediator = mediator;
     }
 
  
@@ -27,8 +28,9 @@ public class DepositController : ControllerBase
     [HttpPost(Name = "CreateDeposit")]
     public async Task<bool> Post([FromBody] CreateDepositDto dto)
     {
- 
-            var result = await _mediator.Send(new CreateDepositCommand(_dbContext, dto));
+
+        var cmd = new CreateDepositCommand(_dbContext, dto);
+            var result = await _mediator.Send(cmd);
 
             return result;
  

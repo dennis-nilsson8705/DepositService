@@ -1,7 +1,9 @@
  using System.Reflection;
+ using Command.Command;
  using Command.Query;
  using Data.Entities;
-using Microsoft.AspNetCore.Authentication.Certificate;
+ using DepositService.Data.Profiles;
+ using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
  using Infrastructure;
@@ -27,8 +29,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(
 
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 builder.Services.AddMediatR(typeof(GetAllDepositCommand).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(CreateDepositCommand).GetTypeInfo().Assembly);
+builder.Services.AddMediatR(typeof(CreateDepositCommandHandler).GetTypeInfo().Assembly);
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+builder.Services.AddAutoMapper(typeof(DepositProfile));
  
 var app = builder.Build();
 

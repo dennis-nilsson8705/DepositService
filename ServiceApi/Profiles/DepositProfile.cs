@@ -1,6 +1,6 @@
 using AutoMapper;
-using Data.Entities;
-using Data.QueryDtos;
+using Command.Command;
+using Data.CommandDtos;
 
 namespace DepositService.Data.Profiles;
 
@@ -8,6 +8,6 @@ public class DepositProfile : Profile
 {
     public DepositProfile()
     {
-        CreateMap<GetAllDepositDto, Deposit>();
+        CreateMap<CreateDepositDto, CreateDepositCommand>();
     }
 }

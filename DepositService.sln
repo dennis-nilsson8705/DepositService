@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{C7FE476E-287D-40D5-B844-3A015DF7C2DF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{1291A2BB-A574-4719-89CE-21D3C73063D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryCommandHandlerTest", "QueryCommandHandlerTest\QueryCommandHandlerTest.csproj", "{41A94AFA-3B1E-4825-900C-F53A615E1D3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,12 @@ Global
 		{C7FE476E-287D-40D5-B844-3A015DF7C2DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7FE476E-287D-40D5-B844-3A015DF7C2DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7FE476E-287D-40D5-B844-3A015DF7C2DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A94AFA-3B1E-4825-900C-F53A615E1D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A94AFA-3B1E-4825-900C-F53A615E1D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A94AFA-3B1E-4825-900C-F53A615E1D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A94AFA-3B1E-4825-900C-F53A615E1D3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41A94AFA-3B1E-4825-900C-F53A615E1D3C} = {1291A2BB-A574-4719-89CE-21D3C73063D7}
 	EndGlobalSection
 EndGlobal

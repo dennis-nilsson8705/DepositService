@@ -41,7 +41,12 @@ public class DepositController : ControllerBase
     [HttpPost("/currency")]
     public async Task<IEnumerable<Deposit>> Get([FromBody] GetDepositsByCurrencyDto dto)
     {
-        var deposits = await _mediator.Send(new GetDepositByCurrencyCommand(_dbContext, dto.Currency));
+        if (string.IsNullOrEmpty(dto.Currency))
+        {
+            return new List<Deposit>();
+        }
+
+        var deposits = await _mediator.Send(new GetDepositByCurrencyCommand(_dbContext, dto.Currency ));
 
         return deposits;
     }

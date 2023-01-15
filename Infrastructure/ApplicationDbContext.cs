@@ -10,5 +10,7 @@ namespace Infrastructure
         }
 
         public DbSet<Deposit>? Deposit { get; set; }
+        public DbSet<Users>? Users { get; set; }
+
     }
 }

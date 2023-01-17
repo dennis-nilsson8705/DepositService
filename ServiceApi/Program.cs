@@ -1,13 +1,12 @@
- using System.Reflection;
- using Command.Command;
- using Command.Query;
- using Data.Entities;
- using DepositService.Data.Profiles;
- using Microsoft.AspNetCore.Authentication.Certificate;
+using System.Reflection;
+using Command.Command;
+using Command.Query;
+using DepositService.Data.Profiles;
+using Microsoft.AspNetCore.Authentication.Certificate;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
- using Infrastructure;
- 
+using Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add certificate
@@ -34,11 +33,11 @@ builder.Services.AddMediatR(typeof(CreateDepositCommandHandler).GetTypeInfo().As
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 builder.Services.AddAutoMapper(typeof(DepositProfile));
- 
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
-{ 
+{
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     db.Database.Migrate();
 }

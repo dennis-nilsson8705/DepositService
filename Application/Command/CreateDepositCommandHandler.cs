@@ -1,5 +1,6 @@
 using Data.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Command.Command;
 
@@ -11,8 +12,14 @@ public class CreateDepositCommandHandler : IRequestHandler<CreateDepositCommand,
 
     public async Task<bool> Handle(CreateDepositCommand command, CancellationToken token)
     {
+        var users =   command.DbContext.Users!.Where(user => user.Key == command.UserKey).ToListAsync();
+        if (command.DbContext.Users == null  || users.Result.Count == 0)
+        {
+            return false;
+        }
+
         var deposit = new Deposit(
-            command.Id, command.Amount, command.Currency ?? string.Empty, command.IsCrypto ?? false
+            command.Id, command.Amount, command.Currency ?? string.Empty, command.UserKey, command.IsCrypto ?? false
         );
         try
         {
@@ -26,6 +33,7 @@ public class CreateDepositCommandHandler : IRequestHandler<CreateDepositCommand,
                 throw;
             }
         }
+
 
         await command.DbContext.SaveChangesAsync(token);
         return true;

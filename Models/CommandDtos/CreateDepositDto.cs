@@ -6,6 +6,8 @@ public class CreateDepositDto
     
     public int Amount { get; set; }
     
+    public int UserKey { get; set; }
+    
     public string? Currency { get; set; }
     
     public bool? IsCrypto { get; set; }

@@ -13,6 +13,8 @@ public class CreateDepositCommand : IRequest<bool>
     public string? Currency { get; set; }
 
     public bool? IsCrypto { get; set; }
+    
+    public int UserKey { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
     public CreateDepositCommand(ApplicationDbContext dbContext, CreateDepositDto dto)
@@ -22,5 +24,6 @@ public class CreateDepositCommand : IRequest<bool>
         Amount = dto.Amount;
         IsCrypto = dto.IsCrypto ?? false;
         Currency = dto.Currency ?? string.Empty;
+        UserKey = dto.UserKey;
     }
 }

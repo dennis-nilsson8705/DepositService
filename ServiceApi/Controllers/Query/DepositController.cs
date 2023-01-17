@@ -22,12 +22,22 @@ public class DepositController : ControllerBase
         _dbContext = dbContext;
     }
 
-    [HttpGet(Name = "GetAllDeposits")]
-    public async Task<IEnumerable<Deposit>> Get()
+    [HttpGet(Name = "GetAllDepositsByUserId")]
+    [HttpGet("{userKey}")]
+    public async Task<IEnumerable<Deposit>> Get([FromRoute]int userKey)
     {
-        var deposits = await _mediator.Send(new GetAllDepositCommand(_dbContext));
+        var deposits = await _mediator.Send(new GetAllDepositCommand(_dbContext, userKey));
 
         return deposits;
+    }
+    
+    [HttpGet(Name = "GetDepositSumByUserId")]
+    [HttpGet("/Deposit/total/{userKey}")]
+    public async Task<int> GetDepositSumByUserId([FromRoute]int userKey)
+    {
+        var deposits = await _mediator.Send(new GetAllDepositCommand(_dbContext, userKey));
+
+        return deposits?.Sum(deposit => deposit.Amount) ?? 0;
     }
 
     [HttpPost("/crypto")]

@@ -12,7 +12,8 @@ public class GetAllDepositCommandHandler : IRequestHandler<GetAllDepositCommand,
 
     public async Task<List<Deposit>> Handle(GetAllDepositCommand command, CancellationToken token)
     {
-        var allDeposits = await command.DbContext.Deposit!.ToListAsync(cancellationToken: token);
+        var allDeposits = await command.DbContext.Deposit!.Where(deposit => deposit.UserKey == command.UserKey)
+            .ToListAsync(cancellationToken: token);
 
         return allDeposits;
     }

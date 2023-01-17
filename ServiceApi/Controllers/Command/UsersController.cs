@@ -1,4 +1,3 @@
-using AutoMapper;
 using Command.Command;
 using Data.CommandDtos;
 using Infrastructure;
@@ -7,16 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Service.CommandControllers;
 
-[ApiController]
-[Route("[controller]")]
-public class DepositController : ControllerBase
+public class UsersController : ControllerBase
 {
     private readonly ILogger<DepositController> _logger;
     private readonly IMediator _mediator;
     private readonly ApplicationDbContext _dbContext;
 
 
-    public DepositController(ILogger<DepositController> logger, ApplicationDbContext dbContext, IMediator mediator)
+    public UsersController(ILogger<DepositController> logger, ApplicationDbContext dbContext, IMediator mediator)
     {
         _logger = logger;
         _dbContext = dbContext;
@@ -25,9 +22,9 @@ public class DepositController : ControllerBase
 
 
     [HttpPost(Name = "CreateDeposit")]
-    public async Task<bool> Post([FromBody] CreateDepositDto dto)
+    public async Task<bool> Post([FromBody] CreateUserDto dto)
     {
-        var cmd = new CreateDepositCommand(_dbContext, dto);
+        var cmd = new CreateUserCommand(_dbContext, dto);
         var result = await _mediator.Send(cmd);
 
         return result;

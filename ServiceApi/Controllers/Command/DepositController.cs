@@ -25,9 +25,11 @@ public class DepositController : ControllerBase
 
 
     [HttpPost(Name = "CreateDeposit")]
-    public async Task<bool> Post([FromBody] CreateDepositDto dto)
+    [HttpPost("/Deposit/{userKey}")]
+
+    public async Task<bool> Post([FromBody] CreateDepositDto dto, [FromRoute] int userKey)
     {
-        var cmd = new CreateDepositCommand(_dbContext, dto);
+        var cmd = new CreateDepositCommand(_dbContext, dto, userKey);
         var result = await _mediator.Send(cmd);
 
         return result;

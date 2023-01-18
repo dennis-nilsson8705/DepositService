@@ -17,13 +17,13 @@ public class CreateDepositCommand : IRequest<bool>
     public int UserKey { get; set; }
     public ApplicationDbContext DbContext { get; set; }
 
-    public CreateDepositCommand(ApplicationDbContext dbContext, CreateDepositDto dto)
+    public CreateDepositCommand(ApplicationDbContext dbContext, CreateDepositDto dto, int userKey)
     {
         DbContext = dbContext;
         Id = dto.Id;
         Amount = dto.Amount;
         IsCrypto = dto.IsCrypto ?? false;
         Currency = dto.Currency ?? string.Empty;
-        UserKey = dto.UserKey;
+        UserKey = userKey;
     }
 }

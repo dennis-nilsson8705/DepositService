@@ -47,6 +47,12 @@ builder.Services.AddCors(options =>
 });
 
 
+
+builder.Services.AddSwaggerGen (c =>
+  {
+    c.ResolveConflictingActions (apiDescriptions => apiDescriptions.First ());
+  });
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -57,12 +63,14 @@ using (var scope = app.Services.CreateScope())
 
 app.UseAuthentication();
 
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
 
 app.UseHttpsRedirection();
 
